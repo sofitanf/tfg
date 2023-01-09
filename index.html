@@ -174,8 +174,8 @@
     // Export
     var currentdate = new Date();
     var datetime = currentdate.getDate() + '-' + (currentdate.getMonth() + 1) + '-' + currentdate.getFullYear() + '@' + currentdate.getHours() + '-' + currentdate.getMinutes() + '-' + currentdate.getSeconds();
-    const content = localStorage.getItem('imageMarker');
-    const download = () => {
+    const download = async() => {
+        const content = await localStorage.getItem('imageMarker');
         var a = document.createElement('a');
         var file = new Blob([content], {
             type: 'text/plain',
