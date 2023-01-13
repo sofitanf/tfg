@@ -120,15 +120,19 @@
             <a href="javascript:void(0)" onclick="importData(event)">Open</a>
             <input type="file" id="input-button" class="d-none" />
         </div>
+        <div class="d-flex ms-4 align-items-center">
+            <i class="fa-solid fa-trash"></i>
+            <a href="javascript:void(0)" onclick="deleteData(event)">Delete</a>
+        </div>
     </div>
     <div id="main">
         <div style="position: relative; z-index: 0" id="map"></div>
         <div style="z-index: 10000" class="d-flex justify-content-between align-items-center m-2">
             <div class="wrap">
-                <img style="z-index: 100" ontouchstart="touchStartHandler(event)" ontouchmove="touchMoveHandler(event)" ontouchend="touchEndHandler(event)" src="./icons/mobile.ico" />
-                <img style="z-index: 100" ontouchstart="touchStartHandler(event)" ontouchmove="touchMoveHandler(event)" ontouchend="touchEndHandler(event)" src="./icons/motor.ico" />
-                <img style="z-index: 100" ontouchstart="touchStartHandler(event)" ontouchmove="touchMoveHandler(event)" ontouchend="touchEndHandler(event)" src="./icons/pagar.ico" />
-                <img style="z-index: 100" ontouchstart="touchStartHandler(event)" ontouchmove="touchMoveHandler(event)" ontouchend="touchEndHandler(event)" src="./icons/pos.ico" />
+                <img style="z-index: 100" ontouchmove="touchMoveHandler(event)" ontouchend="touchEndHandler(event)" src="./icons/mobile.ico" />
+                <img style="z-index: 100" ontouchmove="touchMoveHandler(event)" ontouchend="touchEndHandler(event)" src="./icons/motor.ico" />
+                <img style="z-index: 100" ontouchmove="touchMoveHandler(event)" ontouchend="touchEndHandler(event)" src="./icons/pagar.ico" />
+                <img style="z-index: 100" ontouchmove="touchMoveHandler(event)" ontouchend="touchEndHandler(event)" src="./icons/pos.ico" />
             </div>
             <div class="d-flex gap-2">
                 <button class="openbtn" onclick="openNav()">☰</button>
@@ -172,12 +176,6 @@
     target.ondragover = function(e) {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
-    };
-
-    const touchStartHandler = (e) => {
-        // var elem = e.target
-        // var html = document.getElementById('body').appendChild(elem)
-        // console.log(elem)
     };
 
     const touchMoveHandler = (e) => {
@@ -337,6 +335,16 @@
             })(f);
             reader.readAsText(f);
         });
+    };
+
+    // Delete
+    const deleteData = (e) => {
+        e.preventDefault();
+        if (confirm('Anda yakin ingin menghapus semua icon marker?') == true) {
+            $('.leaflet-marker-icon').remove();
+            $('.leaflet-popup').remove();
+            localStorage.setItem('imageMarker', []);
+        }
     };
 </script>
 
